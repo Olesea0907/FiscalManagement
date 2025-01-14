@@ -1,0 +1,54 @@
+﻿@page "{id:int}"
+@model FiscalManagement.Pages.Cereri.EditModel
+@{
+    ViewData["Title"] = "Editare Cerere";
+    var contribuabil = ViewData["Contribuabil"] as FiscalManagement.Models.Contribuabil;
+}
+
+<h1>Editare Cerere</h1>
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input type="hidden" asp-for="CerereDto.CerereID" />
+    <input type="hidden" asp-for="CerereDto.ContribuabilID" />
+
+    <div class="form-group">
+        <label asp-for="CerereDto.TipCerere" class="control-label"></label>
+        <input asp-for="CerereDto.TipCerere" class="form-control" />
+        <span asp-validation-for="CerereDto.TipCerere" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CerereDto.DataDepunerii" class="control-label"></label>
+        <input asp-for="CerereDto.DataDepunerii" type="date" class="form-control" />
+        <span asp-validation-for="CerereDto.DataDepunerii" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CerereDto.Status" class="control-label"></label>
+        <select asp-for="CerereDto.Status" class="form-control">
+            <option value="În așteptare">În așteptare</option>
+            <option value="Aprobată">Aprobată</option>
+            <option value="Respinsă">Respinsă</option>
+        </select>
+        <span asp-validation-for="CerereDto.Status" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Contribuabil</label>
+        <p class="form-control-static">
+            @if (contribuabil != null)
+            {
+                @($"{contribuabil.Nume} {contribuabil.Prenume} (CNP: {contribuabil.CNP})")
+            }
+            else
+            {
+                <em>Contribuabil necunoscut</em>
+            }
+        </p>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvează</button>
+    <a asp-page="./Index" class="btn btn-secondary">Anulează</a>
+</form>

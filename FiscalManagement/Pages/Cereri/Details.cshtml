@@ -1,0 +1,40 @@
+﻿@page "{id:int}"
+@model FiscalManagement.Pages.Cereri.DetailsModel
+
+<h1>Detalii Cerere</h1>
+
+<div>
+    <h4>Cerere</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tip Cerere
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Cerere.TipCerere
+        </dd>
+        <dt class="col-sm-2">
+            Data Depunerii
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Cerere.DataDepunerii.ToString("dd/MM/yyyy")
+        </dd>
+        <dt class="col-sm-2">
+            Status
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Cerere.Status
+        </dd>
+        <dt class="col-sm-2">
+            Contribuabil
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Cerere.Contribuabil.Nume @Model.Cerere.Contribuabil.Prenume
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Cerere.CerereID" class="btn btn-warning">Editare</a> |
+    <a asp-page="./Index" class="btn btn-secondary">Înapoi la Listă</a>
+</div>

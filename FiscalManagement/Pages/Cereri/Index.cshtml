@@ -1,0 +1,35 @@
+﻿@page
+@model FiscalManagement.Pages.Cereri.IndexModel
+
+<h1>Cereri</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Adaugă o cerere</a>
+</p>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @foreach (var cerere in Model.Cereri)
+    {
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@cerere.TipCerere</h5>
+                    <p class="card-text">Data depunerii: @cerere.DataDepunerii.ToString("dd/MM/yyyy")</p>
+                    <p class="card-text">Status: @cerere.Status</p>
+                    <p class="card-text">Contribuabil: @cerere.Contribuabil.Nume @cerere.Contribuabil.Prenume (CNP: @cerere.Contribuabil.CNP)</p>
+                    <div>
+                        <a asp-page="Details" asp-route-id="@cerere.CerereID" class="btn btn-info">Detalii</a>
+                        <a asp-page="Edit" asp-route-id="@cerere.CerereID" class="btn btn-warning">Editare</a>
+                        <a asp-page="Delete" asp-route-id="@cerere.CerereID" class="btn btn-danger">Șterge</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@if (!Model.Cereri.Any())
+{
+    <p>Nu există cereri înregistrate.</p>
+}

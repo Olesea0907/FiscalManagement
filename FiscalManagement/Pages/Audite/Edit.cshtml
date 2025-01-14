@@ -1,0 +1,23 @@
+﻿@page "{id:int}"
+@model FiscalManagement.Pages.Audite.EditModel
+@{
+    ViewData["Title"] = "Editare Audit";
+}
+
+<h1>Editare Audit</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Audit.AuditID" />
+    <div class="form-group">
+        <label asp-for="Audit.Descriere" class="control-label"></label>
+        <input asp-for="Audit.Descriere" class="form-control" />
+        <span asp-validation-for="Audit.Descriere" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Audit.DataAudit" class="control-label"></label>
+        <input asp-for="Audit.DataAudit" type="date" class="form-control" />
+        <span asp-validation-for="Audit.DataAudit" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvează</button>
+    <a asp-page="./Index" class="btn btn-secondary">Anulează</a>
+</form>

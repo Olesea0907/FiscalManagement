@@ -1,0 +1,37 @@
+﻿@page
+@model FiscalManagement.Pages.Audite.IndexModel
+@{
+    ViewData["Title"] = "Lista de Audite";
+}
+
+<h1>Lista de Audite</h1>
+
+<p>
+    <a asp-page="./Create" class="btn btn-primary">Adaugă un nou audit</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descriere</th>
+            <th>Data Audit</th>
+            <th>Acțiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var audit in Model.Audite)
+        {
+            <tr>
+                <td>@audit.AuditID</td>
+                <td>@audit.Descriere</td>
+                <td>@audit.DataAudit.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@audit.AuditID" class="btn btn-info">Detalii</a>
+                    <a asp-page="./Edit" asp-route-id="@audit.AuditID" class="btn btn-warning">Editare</a>
+                    <a asp-page="./Delete" asp-route-id="@audit.AuditID" class="btn btn-danger">Ștergere</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@page
+@model FiscalManagement.Pages.Contribuabili.IndexModel
+
+<h1>Contribuabili</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Adaugă un Contribuabil</a>
+</p>
+
+@if (Model.Contribuabili != null && Model.Contribuabili.Any())
+{
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var item in Model.Contribuabili)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nume @item.Prenume</h5>
+                        <p class="card-text"><strong>CNP:</strong> @item.CNP</p>
+                        <p class="card-text"><strong>Adresă:</strong> @item.Adresa</p>
+                        <p class="card-text"><strong>Telefon:</strong> @item.Telefon</p>
+                        <div>
+                            <a asp-page="Details" asp-route-id="@item.ContribuabilID" class="btn btn-info">Detalii</a>
+                            <a asp-page="Edit" asp-route-id="@item.ContribuabilID" class="btn btn-warning">Editare</a>
+                            <form method="post" asp-page="Delete" asp-route-id="@item.ContribuabilID" onsubmit="return confirm('Ești sigur că vrei să ștergi acest contribuabil?');" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Șterge</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="text-muted">Nu există contribuabili înregistrați.</p>
+}

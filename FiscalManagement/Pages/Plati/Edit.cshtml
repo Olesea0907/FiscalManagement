@@ -1,0 +1,47 @@
+﻿@page
+@model FiscalManagement.Pages.Plati.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Plata</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Plata.PlataID" />
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Plata.Suma" class="control-label"></label>
+                <input asp-for="Plata.Suma" class="form-control" />
+                <span asp-validation-for="Plata.Suma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Plata.DataPlatii" class="control-label"></label>
+                <input asp-for="Plata.DataPlatii" class="form-control" />
+                <span asp-validation-for="Plata.DataPlatii" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plata.ContribuabilID" class="control-label"></label>
+                <select asp-for="Plata.ContribuabilID" class="form-control" asp-items="ViewBag.ContribuabilID"></select>
+                <span asp-validation-for="Plata.ContribuabilID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

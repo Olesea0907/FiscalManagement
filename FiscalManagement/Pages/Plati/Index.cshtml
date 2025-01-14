@@ -1,0 +1,48 @@
+﻿@page
+@model FiscalManagement.Pages.Plati.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Plata[0].Suma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plata[0].DataPlatii)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plata[0].Contribuabil)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Plata) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Suma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataPlatii)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contribuabil.CNP)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PlataID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PlataID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PlataID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

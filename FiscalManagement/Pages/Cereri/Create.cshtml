@@ -1,0 +1,36 @@
+﻿@page
+@model FiscalManagement.Pages.Cereri.CreateModel
+
+<h1>Adaugă o Cerere</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Cerere.TipCerere" class="control-label"></label>
+        <input asp-for="Cerere.TipCerere" class="form-control" />
+        <span asp-validation-for="Cerere.TipCerere" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Cerere.DataDepunerii" class="control-label"></label>
+        <input asp-for="Cerere.DataDepunerii" type="date" class="form-control" />
+        <span asp-validation-for="Cerere.DataDepunerii" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Cerere.Status" class="control-label"></label>
+        <select asp-for="Cerere.Status" class="form-control">
+            <option value="În așteptare">În așteptare</option>
+            <option value="Aprobată">Aprobată</option>
+            <option value="Respinsă">Respinsă</option>
+        </select>
+        <span asp-validation-for="Cerere.Status" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Cerere.ContribuabilID" class="control-label">Contribuabil</label>
+        <select asp-for="Cerere.ContribuabilID" class="form-control" asp-items="Model.ContribuabiliSelectList">
+            <option value="">Selectează un contribuabil</option>
+        </select>
+        <span asp-validation-for="Cerere.ContribuabilID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvează</button>
+    <a asp-page="./Index" class="btn btn-secondary">Anulează</a>
+</form>

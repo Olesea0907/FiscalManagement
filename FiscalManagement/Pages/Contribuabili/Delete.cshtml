@@ -1,0 +1,18 @@
+﻿@page
+@model FiscalManagement.Pages.Contribuabili.DeleteModel
+
+<h1>Șterge Contribuabil</h1>
+
+<h3>Ești sigur că vrei să ștergi acest contribuabil?</h3>
+<div>
+    <h4>@Model.Contribuabil.Nume @Model.Contribuabil.Prenume</h4>
+    <p><strong>CNP:</strong> @Model.Contribuabil.CNP</p>
+    <p><strong>Adresă:</strong> @Model.Contribuabil.Adresa</p>
+    <p><strong>Telefon:</strong> @Model.Contribuabil.Telefon</p>
+
+    <form method="post">
+        <input type="hidden" asp-for="Contribuabil.ContribuabilID" />
+        <button type="submit" class="btn btn-danger">Șterge definitiv</button>
+        <a asp-page="./Index" class="btn btn-secondary">Anulează</a>
+    </form>
+</div>

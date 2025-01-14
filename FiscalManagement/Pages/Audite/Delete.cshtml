@@ -1,0 +1,38 @@
+﻿@page "{id:int}"
+@model FiscalManagement.Pages.Audite.DeleteModel
+@{
+    ViewData["Title"] = "Ștergere Audit";
+}
+
+<h1>Ștergere Audit</h1>
+
+<h3>Ești sigur că vrei să ștergi acest audit?</h3>
+<div>
+    <h4>Audit</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            ID
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Audit.AuditID
+        </dd>
+        <dt class="col-sm-2">
+            Descriere
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Audit.Descriere
+        </dd>
+        <dt class="col-sm-2">
+            Data Audit
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Audit.DataAudit.ToString("dd/MM/yyyy")
+        </dd>
+    </dl>
+</div>
+<form method="post">
+    <input type="hidden" asp-for="Audit.AuditID" />
+    <button type="submit" class="btn btn-danger">Șterge</button>
+    <a asp-page="./Index" class="btn btn-secondary">Anulează</a>
+</form>

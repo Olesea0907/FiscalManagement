@@ -1,0 +1,18 @@
+﻿@page "{id:int}"
+@model FiscalManagement.Pages.Cereri.DeleteModel
+
+<h1>Ștergere Cerere</h1>
+
+<h3>Ești sigur că vrei să ștergi această cerere?</h3>
+<div>
+    <h4>@Model.Cerere.TipCerere</h4>
+    <p>Data Depunerii: @Model.Cerere.DataDepunerii.ToString("dd/MM/yyyy")</p>
+    <p>Status: @Model.Cerere.Status</p>
+    <p>Contribuabil: @Model.Cerere.Contribuabil.Nume @Model.Cerere.Contribuabil.Prenume</p>
+
+    <form method="post">
+        <input type="hidden" asp-for="Cerere.CerereID" />
+        <button type="submit" class="btn btn-danger">Șterge</button>
+        <a asp-page="./Index" class="btn btn-secondary">Anulează</a>
+    </form>
+</div>
