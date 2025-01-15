@@ -5,10 +5,13 @@
 
 <form method="post">
     <div class="form-group">
-        <label asp-for="Cerere.TipCerere" class="control-label"></label>
+        <label asp-for="Cerere.TipCerere" class="control-label">
+            Tip Cerere <span class="text-danger">*</span>
+        </label>
         <input asp-for="Cerere.TipCerere" class="form-control" />
         <span asp-validation-for="Cerere.TipCerere" class="text-danger"></span>
     </div>
+
     <div class="form-group">
         <label asp-for="Cerere.DataDepunerii" class="control-label"></label>
         <input asp-for="Cerere.DataDepunerii" type="date" class="form-control" />

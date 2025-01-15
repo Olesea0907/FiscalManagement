@@ -12,32 +12,44 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Contribuabil.Nume" class="control-label"></label>
+                <label asp-for="Contribuabil.Nume" class="control-label">
+                    Nume <span class="text-danger">*</span>
+                </label>
                 <input asp-for="Contribuabil.Nume" class="form-control" />
                 <span asp-validation-for="Contribuabil.Nume" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contribuabil.Prenume" class="control-label"></label>
+                <label asp-for="Contribuabil.Prenume" class="control-label">
+                    Prenume <span class="text-danger">*</span>
+                </label>
                 <input asp-for="Contribuabil.Prenume" class="form-control" />
                 <span asp-validation-for="Contribuabil.Prenume" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contribuabil.CNP" class="control-label"></label>
+                <label asp-for="Contribuabil.CNP" class="control-label">
+                    CNP <span class="text-danger">*</span>
+                </label>
                 <input asp-for="Contribuabil.CNP" class="form-control" />
                 <span asp-validation-for="Contribuabil.CNP" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contribuabil.Adresa" class="control-label"></label>
+                <label asp-for="Contribuabil.Adresa" class="control-label">
+                    Adresă
+                </label>
                 <input asp-for="Contribuabil.Adresa" class="form-control" />
                 <span asp-validation-for="Contribuabil.Adresa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contribuabil.Telefon" class="control-label"></label>
+                <label asp-for="Contribuabil.Telefon" class="control-label">
+                    Telefon <span class="text-danger">*</span>
+                </label>
                 <input asp-for="Contribuabil.Telefon" class="form-control" />
                 <span asp-validation-for="Contribuabil.Telefon" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contribuabil.NumeUtilizator" class="control-label"></label>
+                <label asp-for="Contribuabil.NumeUtilizator" class="control-label">
+                    Nume Utilizator<span class="text-danger">*</span>
+                </label>
                 <input asp-for="Contribuabil.NumeUtilizator" class="form-control" />
                 <span asp-validation-for="Contribuabil.NumeUtilizator" class="text-danger"></span>
             </div>

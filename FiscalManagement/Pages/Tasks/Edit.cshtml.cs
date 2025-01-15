@@ -31,17 +31,8 @@ namespace FiscalManagement.Pages.Tasks
         public async Task<IActionResult> OnPostAsync()
         {
             // 1) Verificăm dacă modelul (Task) a trecut de validare
-            if (!ModelState.IsValid)
-            {
-                // Afișăm erorile în consolă
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine($"Eroare: {error.ErrorMessage}");
-                }
-
-                // Rămânem pe pagină pentru afișarea erorilor
+            if (!ModelState.IsValid) 
                 return Page();
-            }
 
             // 2) Căutăm task-ul în DB, după ID
             var existingTask = await _context.Taskuri.FindAsync(Task.TaskID);
@@ -64,7 +55,9 @@ namespace FiscalManagement.Pages.Tasks
                 existingTask.AlocatLa = Task.AlocatLa;
                 existingTask.Prioritate = Task.Prioritate;
 
-                // (dacă ai proprietăți [Required], gen CreatDe, te asiguri că sunt setate)
+                // Dacă aveți câmpuri [Required] precum `CreatDe`, mențineți valoarea existentă
+                // sau o puteți reseta, după logica voastră.
+                // De ex.: existingTask.CreatDe = existingTask.CreatDe;
             }
             else
             {

@@ -1,48 +1,184 @@
-html {
-  font-size: 14px;
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    background-color: #f4f7f9;
+    color: #333;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.navbar {
+    background-color: #007bff;
+    border-bottom: 2px solid #0056b3;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff !important;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    color: #f9f9f9 !important;
+    transition: color 0.3s;
 }
 
-body {
-  margin-bottom: 60px;
+    .navbar-nav .nav-link:hover {
+        color: #ffdf5d !important;
+    }
+
+.footer {
+    background-color: #343a40;
+    color: #bbb;
+    padding: 20px 0;
 }
+
+    .footer a {
+        color: #f9f9f9;
+        text-decoration: none;
+    }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
 
 .card {
-    border-radius: 10px;
+    border-radius: 15px;
     border: 1px solid #ddd;
-    background-color: #f9f9f9;
+    background-color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1rem;
 }
 
     .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
 
 .card-title {
-    color: #333;
+    font-size: 1.2rem;
     font-weight: bold;
+    color: #007bff;
 }
 
 .card-text {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #555;
 }
+/* Asigurăm o structură flexibilă */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
 
-.btn-sm {
-    margin: 0 5px;
+/* Container pentru conținut */
+.container {
+    flex-grow: 1;
+}
+
+/* Stiluri pentru footer */
+.footer {
+    background-color: #87CEEB; /* Albastru deschis */
+    color: #000; /* Text negru */
+    border-top: 1px solid #000; /* Linie neagră de separare */
+    text-align: center;
+    padding: 1rem 0;
+}
+/* Stil personalizat pentru butonul de creare */
+.btn-primary {
+    background-color: #258cfb;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #1b6fda;
+        transform: scale(1.05);
+    }
+
+    .btn-primary:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(37, 140, 251, 0.5);
+    }
+
+/* Table styling */
+.table-custom {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .table-custom th {
+        background-color: #f1f8ff;
+        color: black; /* Black text for headers */
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .table-custom td {
+        text-align: center;
+        padding: 8px;
+        color: black; /* Ensure the text is black */
+        vertical-align: middle;
+    }
+
+    .table-custom tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table-custom tr:hover {
+        background-color: #f1f1f1;
+    }
+
+/* Buttons styling */
+.btn-custom {
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+.btn-primary {
+    background-color: #258cfb;
+    color: white;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #1572d0;
+        color: white;
+    }
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    color: white;
+}
+
+    .btn-success:hover {
+        background-color: #218838;
+        color: white;
+    }
+
+.bg-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.bg-warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.bg-danger {
+    background-color: #dc3545;
+    color: white;
 }

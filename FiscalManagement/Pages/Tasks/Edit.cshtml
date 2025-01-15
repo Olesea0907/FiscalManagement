@@ -23,7 +23,7 @@
         <label asp-for="Task.Titlu"></label>
         @if (isInspector)
         {
-            <input asp-for="Task.Titlu" class="form-control" readonly />
+            <input asp-for="Task.Titlu" class="form-control" disabled />
         }
         else if (isSef)
         {
@@ -37,7 +37,7 @@
         <label asp-for="Task.Descriere"></label>
         @if (isInspector)
         {
-            <textarea asp-for="Task.Descriere" class="form-control" readonly></textarea>
+            <textarea asp-for="Task.Descriere" class="form-control" disabled></textarea>
         }
         else if (isSef)
         {
@@ -65,7 +65,7 @@
         <label asp-for="Task.DataLimita"></label>
         @if (isInspector)
         {
-            <input asp-for="Task.DataLimita" type="date" class="form-control" readonly />
+            <input asp-for="Task.DataLimita" type="date" class="form-control" disabled />
         }
         else if (isSef)
         {
@@ -78,7 +78,7 @@
         <label asp-for="Task.CreatDe"></label>
         @if (isInspector)
         {
-            <textarea asp-for="Task.CreatDe" class="form-control" readonly></textarea>
+            <textarea asp-for="Task.CreatDe" class="form-control" disabled></textarea>
         }
         else if (isSef)
         {
@@ -92,7 +92,7 @@
         <label asp-for="Task.AlocatLa"></label>
         @if (isInspector)
         {
-            <input asp-for="Task.AlocatLa" class="form-control" readonly />
+            <input asp-for="Task.AlocatLa" class="form-control" disabled />
         }
         else if (isSef)
         {

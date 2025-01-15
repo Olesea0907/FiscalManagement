@@ -5,40 +5,53 @@
     ViewData["Title"] = "Listă de sarcini";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class="text-center text-primary">@ViewData["Title"]</h2>
 
-<p>
-    <a asp-page="Create" class="btn btn-success">Creează o sarcină</a>
+<p class="text-center">
+    <a asp-page="Create" class="btn btn-primary btn-custom">Creează o sarcină</a>
 </p>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Titlu</th>
-            <th>Descriere</th>
-            <th>Status</th>
-            <th>Data Limită</th>
-            <th>Alocat La</th>
-            <th>Prioritate</th>
-            <th>Acțiuni</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var task in Model.Taskuri)
-        {
+<div class="table-responsive">
+    <table class="table table-custom">
+        <thead>
             <tr>
-                <td>@task.Titlu</td>
-                <td>@task.Descriere</td>
-                <td>@task.Status</td>
-                <td>@task.DataLimita?.ToString("dd.MM.yyyy")</td>
-                <td>@task.AlocatLa</td>
-                <td>@task.Prioritate</td>
-                <td>
-                    <a asp-page="Edit" asp-route-id="@task.TaskID" class="btn btn-sm btn-warning">Editează</a>
-                    <a asp-page="Details" asp-route-id="@task.TaskID" class="btn btn-sm btn-info">Detalii</a>
-                    <a asp-page="Delete" asp-route-id="@task.TaskID" class="btn btn-sm btn-danger">Șterge</a>
-                </td>
+                <th>#</th>
+                <th>Titlu</th>
+                <th>Descriere</th>
+                <th>Status</th>
+                <th>Data Limită</th>
+                <th>Alocat La</th>
+                <th>Prioritate</th>
+                <th>Acțiuni</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Taskuri.Count; i++)
+            {
+                var task = Model.Taskuri[i];
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@task.Titlu</td>
+                    <td>@task.Descriere</td>
+                    <td>
+                        <span class="badge @(task.Status == "Finalizat" ? "bg-success" : task.Status == "În lucru" ? "bg-warning text-dark" : "bg-danger")">
+                            @task.Status
+                        </span>
+                    </td>
+                    <td>@task.DataLimita?.ToString("dd.MM.yyyy")</td>
+                    <td>@task.AlocatLa</td>
+                    <td>
+                        <span class="badge @(task.Prioritate == "Ridicat" ? "bg-danger" : task.Prioritate == "Mediu" ? "bg-warning text-dark" : "bg-success")">
+                            @task.Prioritate
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@task.TaskID" class="btn btn-sm btn-warning btn-custom">Editează</a>
+                        <a asp-page="Details" asp-route-id="@task.TaskID" class="btn btn-sm btn-info btn-custom">Detalii</a>
+                        <a asp-page="Delete" asp-route-id="@task.TaskID" class="btn btn-sm btn-danger btn-custom">Șterge</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
