@@ -20,7 +20,6 @@ namespace FiscalManagement.Pages.Tasks
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            // Preluăm entitatea din DB
             Task = await _context.Taskuri.FindAsync(id);
             if (Task == null)
                 return NotFound();
@@ -30,19 +29,15 @@ namespace FiscalManagement.Pages.Tasks
 
         public async Task<IActionResult> OnPostAsync()
         {
-            // 1) Verificăm dacă modelul (Task) a trecut de validare
             if (!ModelState.IsValid) 
                 return Page();
 
-            // 2) Căutăm task-ul în DB, după ID
             var existingTask = await _context.Taskuri.FindAsync(Task.TaskID);
             if (existingTask == null)
                 return NotFound();
 
-            // 3) Inspector vs. Șef de secție
             if (User.IsInRole("Inspector"))
             {
-                // Inspectorul modifică doar Status
                 existingTask.Status = Task.Status;
             }
             else if (User.IsInRole("SefDeSectie"))
@@ -54,10 +49,7 @@ namespace FiscalManagement.Pages.Tasks
                 existingTask.DataLimita = Task.DataLimita;
                 existingTask.AlocatLa = Task.AlocatLa;
                 existingTask.Prioritate = Task.Prioritate;
-
-                // Dacă aveți câmpuri [Required] precum `CreatDe`, mențineți valoarea existentă
-                // sau o puteți reseta, după logica voastră.
-                // De ex.: existingTask.CreatDe = existingTask.CreatDe;
+            
             }
             else
             {
@@ -65,7 +57,6 @@ namespace FiscalManagement.Pages.Tasks
                 return Forbid();
             }
 
-            // 4) Salvăm modificările
             try
             {
                 await _context.SaveChangesAsync();
@@ -78,7 +69,6 @@ namespace FiscalManagement.Pages.Tasks
                     throw;
             }
 
-            // 5) Redirect la Index
             return RedirectToPage("Index");
         }
     }

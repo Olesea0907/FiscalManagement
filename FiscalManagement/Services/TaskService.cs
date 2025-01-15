@@ -17,13 +17,11 @@ namespace FiscalManagement.Services
             _context = context;
         }
 
-        // Returnează toate sarcinile
         public async Task<List<Taskuri>> GetAllTasksAsync()
         {
             return await _context.Taskuri.ToListAsync();
         }
 
-        // Returnează sarcinile alocate unui anumit inspector
         public async Task<List<Taskuri>> GetTasksForInspectorAsync(string inspectorUserName)
         {
             return await _context.Taskuri
@@ -31,7 +29,6 @@ namespace FiscalManagement.Services
                 .ToListAsync();
         }
 
-        // Creează o sarcină nouă
         public async Task CreateTaskAsync(Taskuri model, string creatorUserName)
         {
             model.CreatDe = creatorUserName;

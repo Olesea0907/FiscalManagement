@@ -5,40 +5,33 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1) Opțional: setează cultura "ro-RO"
 var cultureInfo = new CultureInfo("ro-RO");
 CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
-// 2) Configurezi DbContext (SQL Server)
 builder.Services.AddDbContext<FiscalDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-           .EnableSensitiveDataLogging() // doar pe Development
+           .EnableSensitiveDataLogging() 
            .LogTo(Console.WriteLine);
 });
 
-// 3) Configurezi Identity (user + roluri)
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
-    // Poți pune true dacă vrei să fie confirmat contul prin email.
     options.SignIn.RequireConfirmedAccount = false;
 })
-.AddRoles<IdentityRole>()                 // suport pentru roluri
+.AddRoles<IdentityRole>()                 
 .AddEntityFrameworkStores<FiscalDbContext>();
 
-// 4) Activezi paginile Razor
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// 5) Seeding pentru roluri și useri
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-    // Pasul A: creezi rolurile, dacă nu există
     string[] roles = { "Inspector", "SefDeSectie" };
     foreach (var role in roles)
     {
@@ -48,7 +41,7 @@ using (var scope = app.Services.CreateScope())
         }
     }
 
-    // Pasul B: creezi userul Șef de secție
+    //  userul Șef de secție
     var sefUser = await userManager.FindByEmailAsync("sef@gmail.com");
     if (sefUser == null)
     {
@@ -67,7 +60,7 @@ using (var scope = app.Services.CreateScope())
         await userManager.AddToRoleAsync(sefUser, "SefDeSectie");
     }
 
-    // Pasul C: creezi userul Inspector
+    // userul Inspector
     var inspUser = await userManager.FindByEmailAsync("insp@gmail.com");
     if (inspUser == null)
     {
@@ -87,7 +80,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// 6) Pipeline standard
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");

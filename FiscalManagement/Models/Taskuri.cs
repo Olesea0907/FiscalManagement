@@ -29,7 +29,6 @@ namespace FiscalManagement.Models
         [FutureDate(ErrorMessage = "Data limita trebuie să fie în viitor.")]
         public DateTime? DataLimita { get; set; }
 
-        // De ex. stochezi userName/email al inspectorului
         [MaxLength(100)]
         public string AlocatLa { get; set; }
 
@@ -37,7 +36,6 @@ namespace FiscalManagement.Models
         [MaxLength(50)]
         public string Prioritate { get; set; } = "Mediu";
 
-        // (opțional) cine a creat taskul
         [MaxLength(100)]
         public string CreatDe { get; set; }
     }

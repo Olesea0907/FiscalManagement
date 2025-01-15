@@ -81,9 +81,9 @@ body {
 
 /* Stiluri pentru footer */
 .footer {
-    background-color: #87CEEB; /* Albastru deschis */
+    background-color: #87CEEB; 
     color: #000; /* Text negru */
-    border-top: 1px solid #000; /* Linie neagră de separare */
+    border-top: 1px solid #000; 
     text-align: center;
     padding: 1rem 0;
 }
@@ -109,7 +109,9 @@ body {
         box-shadow: 0 0 0 0.2rem rgba(37, 140, 251, 0.5);
     }
 
-/* Table styling */
+
+
+
 .table-custom {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -118,7 +120,7 @@ body {
 
     .table-custom th {
         background-color: #f1f8ff;
-        color: black; /* Black text for headers */
+        color: black; 
         font-weight: bold;
         text-align: center;
         padding: 10px;
@@ -128,7 +130,7 @@ body {
     .table-custom td {
         text-align: center;
         padding: 8px;
-        color: black; /* Ensure the text is black */
+        color: black; 
         vertical-align: middle;
     }
 
@@ -140,7 +142,6 @@ body {
         background-color: #f1f1f1;
     }
 
-/* Buttons styling */
 .btn-custom {
     border-radius: 20px;
     font-size: 0.875rem;

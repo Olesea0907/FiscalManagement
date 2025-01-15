@@ -22,7 +22,6 @@ namespace FiscalManagement.Pages.Cereri
         [StringLength(50, ErrorMessage = "Statusul cererii nu poate depăși 50 de caractere.")]
         public string Status { get; set; }
 
-        // Includeți ContribuabilID fără [Required] pentru a fi transmis, dar nu validat automat
         public int ContribuabilID { get; set; }
     }
 }

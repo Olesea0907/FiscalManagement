@@ -7,7 +7,6 @@
 @{
     ViewData["Title"] = "Editează Task";
 
-    // Verificăm rolurile direct în .cshtml
     bool isInspector = User.IsInRole("Inspector");
     bool isSef = User.IsInRole("SefDeSectie");
 }
@@ -15,7 +14,6 @@
 <h2>@ViewData["Title"]</h2>
 
 <form method="post">
-    <!-- ID-ul task-ului e ascuns -->
     <input type="hidden" asp-for="Task.TaskID" />
 
     <!-- Titlu: Inspector îl vede doar read-only, Șeful îl poate edita -->
@@ -47,9 +45,7 @@
     </div>
 
     
-
-
-    <!-- Status: ATÂT Șeful cât și Inspectorul pot modifica -->
+        <!-- Status: ATÂT Șeful cât și Inspectorul pot modifica -->
     <div class="form-group">
         <label asp-for="Task.Status"></label>
         <select asp-for="Task.Status" class="form-control">
@@ -123,7 +119,6 @@
         <span asp-validation-for="Task.Prioritate" class="text-danger"></span>
     </div>
 
-    <!-- Buton de salvare: ambele roluri pot salva (de ex. Inspector salvează doar statusul) -->
     <button type="submit" class="btn btn-primary">Salvează</button>
     <a asp-page="Index" class="btn btn-secondary">Înapoi</a>
 </form>

@@ -18,7 +18,6 @@ namespace FiscalManagement.Pages.Tasks
 
         public async Task OnGetAsync()
         {
-            // Preluăm toate task-urile din baza de date
             Taskuri = await _context.Taskuri
                 .OrderBy(t => t.DataLimita) 
                 .ToListAsync();
