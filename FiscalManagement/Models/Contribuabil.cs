@@ -25,8 +25,11 @@ namespace FiscalManagement.Models
         [Required(ErrorMessage = "Numărul de telefon este obligatoriu.")]
         [RegularExpression(@"^0[0-9]{8}$", ErrorMessage = "Numărul de telefon trebuie să înceapă cu 0 și să conțină exact 9 cifre.")]
         public string Telefon { get; set; }
+        public string NumeUtilizator { get; set; } // Utilizator asociat contribuabilului
+
 
     }
+
 
     public class CNPValidator
     {
@@ -47,5 +50,6 @@ namespace FiscalManagement.Models
             return ValidationResult.Success;
         }
     }
+
 
 }

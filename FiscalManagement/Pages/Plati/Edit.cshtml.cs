@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,39 +9,34 @@ namespace FiscalManagement.Pages.Plati
 {
     public class EditModel : PageModel
     {
-        private readonly FiscalManagement.Data.FiscalDbContext _context;
+        private readonly FiscalDbContext _context;
 
-        public EditModel(FiscalManagement.Data.FiscalDbContext context)
+        public EditModel(FiscalDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Plata Plata { get; set; } = default!;
+        public Plata Plata { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
+            Plata = await _context.Plati.FindAsync(id);
+
+            if (Plata == null)
             {
                 return NotFound();
             }
 
-            var plata =  await _context.Plati.FirstOrDefaultAsync(m => m.PlataID == id);
-            if (plata == null)
-            {
-                return NotFound();
-            }
-            Plata = plata;
-           ViewData["ContribuabilID"] = new SelectList(_context.Contribuabili, "ContribuabilID", "CNP");
+            ViewData["Contribuabili"] = new SelectList(_context.Contribuabili, "ContribuabilID", "Nume", Plata.ContribuabilID);
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                ViewData["Contribuabili"] = new SelectList(_context.Contribuabili, "ContribuabilID", "Nume", Plata.ContribuabilID);
                 return Page();
             }
 
@@ -57,7 +48,7 @@ namespace FiscalManagement.Pages.Plati
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PlataExists(Plata.PlataID))
+                if (!_context.Plati.Any(p => p.PlataID == Plata.PlataID))
                 {
                     return NotFound();
                 }
@@ -67,12 +58,7 @@ namespace FiscalManagement.Pages.Plati
                 }
             }
 
-            return RedirectToPage("./Index");
-        }
-
-        private bool PlataExists(int id)
-        {
-            return _context.Plati.Any(e => e.PlataID == id);
+            return RedirectToPage("Index");
         }
     }
 }

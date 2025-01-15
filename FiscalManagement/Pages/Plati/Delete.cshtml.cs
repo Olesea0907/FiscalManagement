@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FiscalManagement.Data;
@@ -12,52 +8,41 @@ namespace FiscalManagement.Pages.Plati
 {
     public class DeleteModel : PageModel
     {
-        private readonly FiscalManagement.Data.FiscalDbContext _context;
+        private readonly FiscalDbContext _context;
 
-        public DeleteModel(FiscalManagement.Data.FiscalDbContext context)
+        public DeleteModel(FiscalDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Plata Plata { get; set; } = default!;
+        public Plata Plata { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
+            Plata = await _context.Plati
+                .Include(p => p.Contribuabil)
+                .FirstOrDefaultAsync(p => p.PlataID == id);
+
+            if (Plata == null)
             {
                 return NotFound();
             }
 
-            var plata = await _context.Plati.FirstOrDefaultAsync(m => m.PlataID == id);
-
-            if (plata == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                Plata = plata;
-            }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Plata = await _context.Plati.FindAsync(id);
 
-            var plata = await _context.Plati.FindAsync(id);
-            if (plata != null)
+            if (Plata != null)
             {
-                Plata = plata;
                 _context.Plati.Remove(Plata);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("Index");
         }
     }
 }

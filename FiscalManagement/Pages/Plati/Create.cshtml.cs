@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FiscalManagement.Data;
@@ -12,34 +8,46 @@ namespace FiscalManagement.Pages.Plati
 {
     public class CreateModel : PageModel
     {
-        private readonly FiscalManagement.Data.FiscalDbContext _context;
+        private readonly FiscalDbContext _context;
 
-        public CreateModel(FiscalManagement.Data.FiscalDbContext context)
+        public CreateModel(FiscalDbContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
+        public Plata Plata { get; set; }
+
         public IActionResult OnGet()
         {
-        ViewData["ContribuabilID"] = new SelectList(_context.Contribuabili, "ContribuabilID", "CNP");
+            ViewData["Contribuabili"] = new SelectList(_context.Contribuabili, "ContribuabilID", "Nume");
             return Page();
         }
 
-        [BindProperty]
-        public Plata Plata { get; set; } = default!;
-
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                ViewData["Contribuabili"] = new SelectList(_context.Contribuabili, "ContribuabilID", "Nume");
                 return Page();
+            }
+
+            // Procesare fișier
+            if (Plata.FisierUpload != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await Plata.FisierUpload.CopyToAsync(memoryStream);
+                    Plata.Fisier = memoryStream.ToArray();
+                }
             }
 
             _context.Plati.Add(Plata);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("Index");
         }
+
+
     }
 }

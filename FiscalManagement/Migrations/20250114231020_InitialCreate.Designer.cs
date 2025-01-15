@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FiscalManagement.Migrations
 {
     [DbContext(typeof(FiscalDbContext))]
-    [Migration("20250113221935_InitialCreate")]
+    [Migration("20250114231020_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,16 +33,13 @@ namespace FiscalManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuditID"));
 
-                    b.Property<string>("Actiune")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime>("DataAudit")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Utilizator")
+                    b.Property<string>("Descriere")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("AuditID");
 
@@ -102,6 +99,10 @@ namespace FiscalManagement.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("NumeUtilizator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Prenume")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -127,11 +128,29 @@ namespace FiscalManagement.Migrations
                     b.Property<int>("ContribuabilID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataPlatii")
+                    b.Property<DateTime>("DataPlata")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DetaliiPlata")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<byte[]>("Fisier")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<decimal>("Suma")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TipPlata")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PlataID");
 

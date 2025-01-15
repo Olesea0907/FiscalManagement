@@ -24,16 +24,28 @@ namespace FiscalManagement.Pages.Contribuabili
 
         public async Task<IActionResult> OnPostAsync()
         {
+            Console.WriteLine("Metoda OnPostAsync a fost apelată.");
+
             if (!ModelState.IsValid)
             {
+                foreach (var key in ModelState.Keys)
+                {
+                    var errors = ModelState[key].Errors;
+                    foreach (var error in errors)
+                    {
+                        Console.WriteLine($"Eroare pentru cheia '{key}': {error.ErrorMessage}");
+                    }
+                }
                 return Page();
             }
 
-            // Adaugă contribuabilul în baza de date
+
             _context.Contribuabili.Add(Contribuabil);
             await _context.SaveChangesAsync();
 
+            Console.WriteLine("Contribuabil adăugat cu succes.");
             return RedirectToPage("./Index");
         }
+
     }
 }

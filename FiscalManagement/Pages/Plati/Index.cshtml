@@ -1,48 +1,41 @@
 ﻿@page
 @model FiscalManagement.Pages.Plati.IndexModel
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Plati";
 }
 
-<h1>Index</h1>
+<h1>Plăți</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a class="btn btn-primary" asp-page="Create">Adaugă o plată</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Plata[0].Suma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plata[0].DataPlatii)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plata[0].Contribuabil)
-            </th>
-            <th></th>
+            <th>Detalii</th>
+            <th>Data Plății</th>
+            <th>Suma</th>
+            <th>Tipul Plății</th>
+            <th>Contribuabil</th>
+            <th>Acțiuni</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Plata) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Suma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataPlatii)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contribuabil.CNP)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.PlataID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.PlataID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.PlataID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var plata in Model.Plati)
+        {
+            <tr>
+                <td>@plata.DetaliiPlata</td>
+                <td>@plata.DataPlata.ToShortDateString()</td>
+                <td>@plata.Suma</td>
+                <td>@plata.TipPlata</td>
+                <td>@plata.Contribuabil.Nume</td>
+                <td>
+                    <a asp-page="Details" asp-route-id="@plata.PlataID" class="btn btn-info btn-sm">Detalii</a>
+                    <a asp-page="Edit" asp-route-id="@plata.PlataID" class="btn btn-warning btn-sm">Editează</a>
+                    <a asp-page="Delete" asp-route-id="@plata.PlataID" class="btn btn-danger btn-sm">Șterge</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

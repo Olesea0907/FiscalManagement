@@ -2,31 +2,39 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configurarea culturii implicite
 var cultureInfo = new CultureInfo("ro-RO");
 CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
+// Configurarea DbContext pentru SQL Server
 builder.Services.AddDbContext<FiscalDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FiscalDbContext"))
-           .EnableSensitiveDataLogging()
-           .LogTo(Console.WriteLine));
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+           .EnableSensitiveDataLogging() // Activează logarea datelor sensibile pentru dezvoltare
+           .LogTo(Console.WriteLine);    // Loghează interogările SQL în consola aplicației
+});
 
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<FiscalDbContext>();
+// Configurarea identității implicite
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<FiscalDbContext>();
 
 var app = builder.Build();
 
+// Configurarea gestionării erorilor pentru medii diferite
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
+// Configurarea middleware-ului
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

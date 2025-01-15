@@ -56,9 +56,8 @@ namespace FiscalManagement.Migrations
                 {
                     AuditID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Actiune = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Utilizator = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Descriere = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    DataAudit = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,7 +74,8 @@ namespace FiscalManagement.Migrations
                     Prenume = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CNP = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     Adresa = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefon = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Telefon = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumeUtilizator = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -216,8 +216,12 @@ namespace FiscalManagement.Migrations
                 {
                     PlataID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    DetaliiPlata = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    DataPlata = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Suma = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DataPlatii = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TipPlata = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Fisier = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ContribuabilID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

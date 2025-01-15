@@ -40,7 +40,7 @@ namespace FiscalManagement.Migrations
 
                     b.HasKey("AuditID");
 
-                    b.ToTable("Audite");
+                    b.ToTable("Audite", (string)null);
                 });
 
             modelBuilder.Entity("FiscalManagement.Models.Cerere", b =>
@@ -71,7 +71,7 @@ namespace FiscalManagement.Migrations
 
                     b.HasIndex("ContribuabilID");
 
-                    b.ToTable("Cereri");
+                    b.ToTable("Cereri", (string)null);
                 });
 
             modelBuilder.Entity("FiscalManagement.Models.Contribuabil", b =>
@@ -96,6 +96,10 @@ namespace FiscalManagement.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("NumeUtilizator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Prenume")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -107,7 +111,7 @@ namespace FiscalManagement.Migrations
 
                     b.HasKey("ContribuabilID");
 
-                    b.ToTable("Contribuabili");
+                    b.ToTable("Contribuabili", (string)null);
                 });
 
             modelBuilder.Entity("FiscalManagement.Models.Plata", b =>
@@ -121,17 +125,35 @@ namespace FiscalManagement.Migrations
                     b.Property<int>("ContribuabilID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataPlatii")
+                    b.Property<DateTime>("DataPlata")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DetaliiPlata")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<byte[]>("Fisier")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<decimal>("Suma")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TipPlata")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PlataID");
 
                     b.HasIndex("ContribuabilID");
 
-                    b.ToTable("Plati");
+                    b.ToTable("Plati", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
