@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using FiscalManagement.Data;
 using FiscalManagement.Models;
+using FiscalManagement.Data;
+using Microsoft.AspNetCore.Authorization;
 
-namespace FiscalManagement.Pages.Plati
+namespace FiscalManagement.Pages.Tasks
 {
+    [Authorize(Roles = "SefDeSectie")]
+
     public class DeleteModel : PageModel
     {
         private readonly FiscalDbContext _context;
@@ -16,29 +18,23 @@ namespace FiscalManagement.Pages.Plati
         }
 
         [BindProperty]
-        public Plata Plata { get; set; }
+        public Taskuri Task { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Plata = await _context.Plati
-                .Include(p => p.Contribuabil)
-                .FirstOrDefaultAsync(p => p.PlataID == id);
-
-            if (Plata == null)
-            {
+            Task = await _context.Taskuri.FindAsync(id);
+            if (Task == null)
                 return NotFound();
-            }
 
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            Plata = await _context.Plati.FindAsync(id);
-
-            if (Plata != null)
+            var task = await _context.Taskuri.FindAsync(id);
+            if (task != null)
             {
-                _context.Plati.Remove(Plata);
+                _context.Taskuri.Remove(task);
                 await _context.SaveChangesAsync();
             }
 

@@ -1,0 +1,67 @@
+﻿@page
+@model FiscalManagement.Pages.Tasks.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Taskuri</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Taskuri.Titlu)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Taskuri.Titlu)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Taskuri.Descriere)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Taskuri.Descriere)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Taskuri.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Taskuri.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Taskuri.DataCreare)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Taskuri.DataCreare)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Taskuri.DataLimita)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Taskuri.DataLimita)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Taskuri.AlocatLa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Taskuri.AlocatLa)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Taskuri.Prioritate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Taskuri.Prioritate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Taskuri.CreatDe)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Taskuri.CreatDe)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Taskuri.TaskID">Editează</a> |
+    <a asp-page="./Index">Înapoi la listă</a>
+</div>

@@ -1,0 +1,133 @@
+﻿@page "{id:int}"
+@model FiscalManagement.Pages.Tasks.EditModel
+
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Editează Task";
+
+    // Verificăm rolurile direct în .cshtml
+    bool isInspector = User.IsInRole("Inspector");
+    bool isSef = User.IsInRole("SefDeSectie");
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <!-- ID-ul task-ului e ascuns -->
+    <input type="hidden" asp-for="Task.TaskID" />
+
+    <!-- Titlu: Inspector îl vede doar read-only, Șeful îl poate edita -->
+    <div class="form-group">
+        <label asp-for="Task.Titlu"></label>
+        @if (isInspector)
+        {
+            <input asp-for="Task.Titlu" class="form-control" readonly />
+        }
+        else if (isSef)
+        {
+            <input asp-for="Task.Titlu" class="form-control" />
+        }
+        <span asp-validation-for="Task.Titlu" class="text-danger"></span>
+    </div>
+
+    <!-- Descriere: Inspector doar vede, Șeful modifică -->
+    <div class="form-group">
+        <label asp-for="Task.Descriere"></label>
+        @if (isInspector)
+        {
+            <textarea asp-for="Task.Descriere" class="form-control" readonly></textarea>
+        }
+        else if (isSef)
+        {
+            <textarea asp-for="Task.Descriere" class="form-control"></textarea>
+        }
+        <span asp-validation-for="Task.Descriere" class="text-danger"></span>
+    </div>
+
+    
+
+
+    <!-- Status: ATÂT Șeful cât și Inspectorul pot modifica -->
+    <div class="form-group">
+        <label asp-for="Task.Status"></label>
+        <select asp-for="Task.Status" class="form-control">
+            <option value="Neînceput">Neînceput</option>
+            <option value="În lucru">În lucru</option>
+            <option value="Finalizat">Finalizat</option>
+        </select>
+        <span asp-validation-for="Task.Status" class="text-danger"></span>
+    </div>
+
+    <!-- Data limită: Inspector doar vede, Șeful modifică -->
+    <div class="form-group">
+        <label asp-for="Task.DataLimita"></label>
+        @if (isInspector)
+        {
+            <input asp-for="Task.DataLimita" type="date" class="form-control" readonly />
+        }
+        else if (isSef)
+        {
+            <input asp-for="Task.DataLimita" type="date" class="form-control" />
+        }
+        <span asp-validation-for="Task.DataLimita" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Task.CreatDe"></label>
+        @if (isInspector)
+        {
+            <textarea asp-for="Task.CreatDe" class="form-control" readonly></textarea>
+        }
+        else if (isSef)
+        {
+            <textarea asp-for="Task.CreatDe" class="form-control"></textarea>
+        }
+        <span asp-validation-for="Task.CreatDe" class="text-danger"></span>
+    </div>
+
+    <!-- AlocatLa: Inspector doar vede, Șeful modifică (dacă vrei) -->
+    <div class="form-group">
+        <label asp-for="Task.AlocatLa"></label>
+        @if (isInspector)
+        {
+            <input asp-for="Task.AlocatLa" class="form-control" readonly />
+        }
+        else if (isSef)
+        {
+            <input asp-for="Task.AlocatLa" class="form-control" />
+        }
+        <span asp-validation-for="Task.AlocatLa" class="text-danger"></span>
+    </div>
+
+    <!-- Prioritate: Inspector doar vede, Șeful modifică -->
+    <div class="form-group">
+        <label asp-for="Task.Prioritate"></label>
+        @if (isInspector)
+        {
+            <select asp-for="Task.Prioritate" class="form-control" disabled>
+                <option value="Scăzut">Scăzut</option>
+                <option value="Mediu">Mediu</option>
+                <option value="Ridicat">Ridicat</option>
+            </select>
+        }
+        else if (isSef)
+        {
+            <select asp-for="Task.Prioritate" class="form-control">
+                <option value="Scăzut">Scăzut</option>
+                <option value="Mediu">Mediu</option>
+                <option value="Ridicat">Ridicat</option>
+            </select>
+        }
+        <span asp-validation-for="Task.Prioritate" class="text-danger"></span>
+    </div>
+
+    <!-- Buton de salvare: ambele roluri pot salva (de ex. Inspector salvează doar statusul) -->
+    <button type="submit" class="btn btn-primary">Salvează</button>
+    <a asp-page="Index" class="btn btn-secondary">Înapoi</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

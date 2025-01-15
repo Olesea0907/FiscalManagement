@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FiscalManagement.Data;
 using FiscalManagement.Models;
+using FiscalManagement.Data;
 
-namespace FiscalManagement.Pages.Plati
+namespace FiscalManagement.Pages.Tasks
 {
     public class IndexModel : PageModel
     {
@@ -14,12 +14,13 @@ namespace FiscalManagement.Pages.Plati
             _context = context;
         }
 
-        public IList<Plata> Plati { get; set; }
+        public List<Taskuri> Taskuri { get; set; }
 
         public async Task OnGetAsync()
         {
-            Plati = await _context.Plati
-                .Include(p => p.Contribuabil)
+            // Preluăm toate task-urile din baza de date
+            Taskuri = await _context.Taskuri
+                .OrderBy(t => t.DataLimita) 
                 .ToListAsync();
         }
     }

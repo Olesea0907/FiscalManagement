@@ -1,0 +1,44 @@
+﻿@page
+@model FiscalManagement.Pages.Tasks.IndexModel
+
+@{
+    ViewData["Title"] = "Listă de sarcini";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Creează o sarcină</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Titlu</th>
+            <th>Descriere</th>
+            <th>Status</th>
+            <th>Data Limită</th>
+            <th>Alocat La</th>
+            <th>Prioritate</th>
+            <th>Acțiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model.Taskuri)
+        {
+            <tr>
+                <td>@task.Titlu</td>
+                <td>@task.Descriere</td>
+                <td>@task.Status</td>
+                <td>@task.DataLimita?.ToString("dd.MM.yyyy")</td>
+                <td>@task.AlocatLa</td>
+                <td>@task.Prioritate</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@task.TaskID" class="btn btn-sm btn-warning">Editează</a>
+                    <a asp-page="Details" asp-route-id="@task.TaskID" class="btn btn-sm btn-info">Detalii</a>
+                    <a asp-page="Delete" asp-route-id="@task.TaskID" class="btn btn-sm btn-danger">Șterge</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

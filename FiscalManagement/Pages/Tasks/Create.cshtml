@@ -1,0 +1,64 @@
+﻿@page
+@model FiscalManagement.Pages.Tasks.CreateModel
+@{
+    ViewData["Title"] = "Creare task";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- IMPORTANT: method="post" ca să apeleze OnPostAsync -->
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <!-- Exemplu de câmp Titlu -->
+    <div class="form-group">
+        <label asp-for="Task.Titlu"></label>
+        <input asp-for="Task.Titlu" class="form-control" />
+        <span asp-validation-for="Task.Titlu" class="text-danger"></span>
+    </div>
+
+    <!-- Exemplu de câmp Descriere -->
+    <div class="form-group">
+        <label asp-for="Task.Descriere"></label>
+        <textarea asp-for="Task.Descriere" class="form-control"></textarea>
+        <span asp-validation-for="Task.Descriere" class="text-danger"></span>
+    </div>
+
+    <!-- Exemplu de câmp DataLimita -->
+    <div class="form-group">
+        <label asp-for="Task.DataLimita"></label>
+        <input asp-for="Task.DataLimita" type="date" class="form-control" />
+        <span asp-validation-for="Task.DataLimita" class="text-danger"></span>
+    </div>
+
+    <!-- Exemplu de câmp Prioritate -->
+    <div class="form-group">
+        <label asp-for="Task.Prioritate"></label>
+        <select asp-for="Task.Prioritate" class="form-control">
+            <option value="Scăzut">Scăzut</option>
+            <option value="Mediu">Mediu</option>
+            <option value="Ridicat">Ridicat</option>
+        </select>
+        <span asp-validation-for="Task.Prioritate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Task.CreatDe"></label>
+        <input asp-for="Task.CreatDe" class="form-control" />
+        <span asp-validation-for="Task.CreatDe" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Task.AlocatLa"></label>
+        <input asp-for="Task.AlocatLa" class="form-control" />
+        <span asp-validation-for="Task.AlocatLa" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Salvează</button>
+    <a asp-page="Index" class="btn btn-secondary">Renunță</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,21 @@
+﻿@page "{id:int}"
+@model FiscalManagement.Pages.Tasks.DeleteModel
+
+@{
+    ViewData["Title"] = "Șterge Task";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Șterge task</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Titlu</dt>
+        <dd class="col-sm-10">@Model.Task.Titlu</dd>
+    </dl>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Șterge</button>
+        <a asp-page="Index" class="btn btn-secondary">Înapoi</a>
+    </form>
+</div>

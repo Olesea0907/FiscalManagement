@@ -1,10 +1,83 @@
 ﻿@page
 @model IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Pagina Principală";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bine ai venit pe Platforma FiscalManagement!</h1>
+    <p class="lead">Gestionăm eficient procesele fiscale și administrative ale organizației tale.</p>
+</div>
+
+<hr />
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Ce poți face pe platforma noastră?</h2>
+
+    <div class="row">
+        <!-- Flashcard 1 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Gestionare Sarcini</h3>
+                    <p class="card-text">Administrează sarcinile alocate utilizatorilor, setează priorități și urmărește progresul lor.</p>
+                    <a asp-page="/Tasks/Index" class="btn btn-primary">Vezi Sarcinile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 2 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Audituri</h3>
+                    <p class="card-text">Urmărește rapoartele de audit și asigură transparența proceselor organizaționale.</p>
+                    <a asp-page="/Audite/Index" class="btn btn-primary">Vezi Audituri</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 3 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Cereri</h3>
+                    <p class="card-text">Gestionează cererile utilizatorilor și urmărește progresul acestora în timp real.</p>
+                    <a asp-page="/Cereri/Index" class="btn btn-primary">Vezi Cereri</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Flashcard 4 -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Contribuabili</h3>
+                    <p class="card-text">Administrează datele contribuabililor și urmărește istoricul lor fiscal.</p>
+                    <a asp-page="/Contribuabili/Index" class="btn btn-primary">Vezi Contribuabili</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 5 -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Contactează-ne</h3>
+                    <p class="card-text">Pentru întrebări sau suport tehnic, contactează echipa noastră de suport.</p>
+                    <a href="/Contact" class="btn btn-secondary">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="text-center mt-5">
+    <h2>Despre Platformă</h2>
+    <p>Platforma FiscalManagement este proiectată pentru a simplifica activitățile fiscale și administrative. Oferim un set complet de instrumente pentru a sprijini organizațiile să lucreze eficient și transparent.</p>
 </div>
