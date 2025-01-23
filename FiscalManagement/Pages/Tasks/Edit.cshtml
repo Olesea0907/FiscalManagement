@@ -21,7 +21,7 @@
         <label asp-for="Task.Titlu"></label>
         @if (isInspector)
         {
-            <input asp-for="Task.Titlu" class="form-control" disabled />
+            <input asp-for="Task.Titlu" class="form-control" readonly />
         }
         else if (isSef)
         {
@@ -35,7 +35,7 @@
         <label asp-for="Task.Descriere"></label>
         @if (isInspector)
         {
-            <textarea asp-for="Task.Descriere" class="form-control" disabled></textarea>
+            <textarea asp-for="Task.Descriere" class="form-control" readonly></textarea>
         }
         else if (isSef)
         {
@@ -61,7 +61,7 @@
         <label asp-for="Task.DataLimita"></label>
         @if (isInspector)
         {
-            <input asp-for="Task.DataLimita" type="date" class="form-control" disabled />
+            <input asp-for="Task.DataLimita" type="date" class="form-control" readonly />
         }
         else if (isSef)
         {
@@ -74,7 +74,7 @@
         <label asp-for="Task.CreatDe"></label>
         @if (isInspector)
         {
-            <textarea asp-for="Task.CreatDe" class="form-control" disabled></textarea>
+            <textarea asp-for="Task.CreatDe" class="form-control" readonly></textarea>
         }
         else if (isSef)
         {
@@ -88,7 +88,7 @@
         <label asp-for="Task.AlocatLa"></label>
         @if (isInspector)
         {
-            <input asp-for="Task.AlocatLa" class="form-control" disabled />
+            <input asp-for="Task.AlocatLa" class="form-control" readonly />
         }
         else if (isSef)
         {
@@ -102,7 +102,7 @@
         <label asp-for="Task.Prioritate"></label>
         @if (isInspector)
         {
-            <select asp-for="Task.Prioritate" class="form-control" disabled>
+            <select asp-for="Task.Prioritate" class="form-control" readonly>
                 <option value="Scăzut">Scăzut</option>
                 <option value="Mediu">Mediu</option>
                 <option value="Ridicat">Ridicat</option>
